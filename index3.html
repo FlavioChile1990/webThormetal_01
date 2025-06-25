@@ -1,43 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <title>Thormetal Carrusel</title>
+  <meta charset="UTF-8" />
+  <title>Thormetal Carrusel</title>
     <style>
       <!-- codigo css-->
-      .slider-container {
-          display: flex;
-          width: 100%;
-          height: 100vh;
-          overflow-x: scroll;
-          scroll-snap-type: x mandatory;
+    .carousel {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
       }
 
-      .slider-container img {
-          flex: 0 0 100%;
-          width: 100%;
-          object-fit: cover;
-          scroll-snap-align: center;
+    .slides {
+      display: flex;
+      width: 300%;
+      transition: transform 1s ease-in-out;
       }
+
+    .slides img {
+        width: 100%;
+        flex: 0 0 100%;
+      }
+
       <!-- fin codigo css-->
     </style>
-  </head>
+</head>
 <body>
-  <div class="slider-container">  
-    <img
-    class="slider-item" src="imagenes/imagen1.png"
-     />
-    <img
-    class="slider-item" src="imagenes\imagen2.png"
-
-    />
-    <img
-    class="slider-item" src="imagenes\imagen3.png"
-    />
+  <div class="carousel">
+  <div class="slides">
+    <img src="imagenes/imagen1.png" alt="Imagen 1">
+    <img src="imagenes/imagen2.png" alt="Imagen 2">
+    <img src="imagenes/imagen3.jpg" alt="Imagen 3">
   </div>
+</div>
 
 
    <a href="index.html"> Regresar a pagina principal</a>
+  <script>
+      let currentIndex = 0;
+      const slides = document.querySelector('.slides');
+      const totalSlides = document.querySelectorAll('.slides img').length;
 
+    function nextSlide() {
+     currentIndex = (currentIndex + 1) % totalSlides;
+     slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    setInterval(nextSlide, 3000);
+  </script>
 </body>
 </html>
